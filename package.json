@@ -1,0 +1,27 @@
+{
+  "name": "animated-graphics-test",
+  "version": "1.0.0",
+  "description": "playing around with rotating wireframe graphics",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write '*.js' '{components,pages}/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freeman-lab/animated-graphics-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/freeman-lab/animated-graphics-test/issues"
+  },
+  "homepage": "https://github.com/freeman-lab/animated-graphics-test#readme",
+  "dependencies": {
+    "next": "^10.0.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
