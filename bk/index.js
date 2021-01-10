@@ -2,21 +2,22 @@ import { useState, useEffect } from 'react'
 
 const Cube = () => {
   const [rotation, setRotation] = useState(45)
-  const [rotating, setRotating] = useState(false)
+  const [velocity, setVelocity] = useState(0)
+  const [target, setTarget] = useState(0)
 
   useEffect(() => {
-    if (rotating) {
-      setTimeout(() => {
-        setRotation(rotation => rotation + 5)
-      }, 50)
-    } else {
-      setRotation(155)
-    }
-  }, [rotating, rotation])
+    setTimeout(() => {
+      setRotation(rotation => rotation + velocity * 1)
+    }, 50)
+  }, [velocity, rotation])
+
+  useEffect(() => {
+    setVelocity(velocity => velocity + 0.1 * (target - velocity))
+  }, [target, velocity])
 
   return <div 
-    onMouseEnter={() => setRotating(true)}
-    onMouseLeave={() => setTimeout(() => setRotating(false), 700)}
+    onMouseEnter={() => setTarget(1)}
+    onMouseLeave={() => setTarget(0)}
     style={{
       width: '150px', 
       height: '150px',

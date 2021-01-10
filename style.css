@@ -1,0 +1,31 @@
+.background {
+  background-color: #da4457;
+}
+
+.container {
+  width: 150px; 
+  height: 150px;
+  margin-left: 50px;
+  margin-top: 50px;
+  display: inline-block;
+}
+
+.cube {
+  width: 100%; 
+  height: 100%;
+  perspective: 10000px;
+  backface-visibility: visible;
+  perspective-origin: 100% 100%;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  transform-origin: 50px 50px 0px;
+}
+
+.face {
+  border: solid 1px black;
+  opacity: 0.5;  
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+}
