@@ -7,7 +7,7 @@ var cubes = []
 
 for (var i = 0; i < N_CUBES; i++) {
   cubes[i] = createContainer(i)
-  document.getElementById('cubes').appendChild(cubes[i].container)
+  document.getElementById('chapter-2-animation').appendChild(cubes[i].container)
 }
 
 function update() {
