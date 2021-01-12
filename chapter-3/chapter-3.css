@@ -1,5 +1,5 @@
 .background {
-  background-color: #da4457;
+  background-color: #b53d8f;
   width: 100%;
   height: 700px;
 }
@@ -22,5 +22,4 @@
   opacity: 0.5;  
   display: block;
   position: absolute;
-  background-color: none;
 }

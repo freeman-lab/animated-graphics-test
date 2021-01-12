@@ -9,7 +9,7 @@ setup()
 window.onresize = setup
 
 function setup() {
-  var el = document.getElementById('chapter-2-animation')
+  var el = document.getElementById('chapter-3-animation')
   while (el.firstChild) {
     el.removeChild(el.firstChild)
   }
@@ -110,25 +110,24 @@ function createCube(i) {
   var cube = document.createElement('div')
   cube.id='cube-' + i
   cube.classList.add('cube')
-  var list = ['front', 'back', 'left', 'right', 'top', 'bottom']
+  var list = ['front', 'back', 'left', 'right']
   var faces = {}
-  for (var j = 0; j < 6; j++) {
+  for (var j = 0; j < 4; j++) {
     faces[list[j]] = cube.appendChild(createFace(list[j], i))
   }
 
   function style(width, height) {
     var transforms = {
-      'front': `translateZ(${width/2}px)`,
-      'back': `rotateY(180deg) translateZ(${width/2}px)`,
-      'left': `rotateY(90deg) translateZ(${width/2}px)`,
-      'right': `rotateY(-90deg) translateZ(${width/2}px)`,
-      'top': `rotateX(90deg) translateZ(${width/2}px)`,
-      'bottom': `rotateX(-90deg) translateZ(${width/2}px)`
+      'front': `translateZ(${0}px)`,
+      'back': `rotateY(120deg) translateZ(${0}px)`,
+      'left': `rotateX(90deg) translateZ(${0}px)`,
+      'right': `rotateY(60deg) translateZ(${0}px)`,
     }
-    for (var j = 0; j < 6; j++) {
+    for (var j = 0; j < 4; j++) {
       faces[list[j]].style.transform = transforms[list[j]]
       faces[list[j]].style.width = `${width}px`
       faces[list[j]].style.height = `${height}px`
+      faces[list[j]].style.borderRadius = `${height/2}px`
     }
     cube.style.transformOrigin = `${width/2}px ${width/2}px 0px`
   }

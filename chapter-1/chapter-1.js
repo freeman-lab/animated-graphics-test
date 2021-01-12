@@ -9,7 +9,7 @@ setup()
 window.onresize = setup
 
 function setup() {
-  var el = document.getElementById('chapter-2-animation')
+  var el = document.getElementById('chapter-1-animation')
   while (el.firstChild) {
     el.removeChild(el.firstChild)
   }
@@ -110,27 +110,29 @@ function createCube(i) {
   var cube = document.createElement('div')
   cube.id='cube-' + i
   cube.classList.add('cube')
-  var list = ['front', 'back', 'left', 'right', 'top', 'bottom']
-  var faces = {}
-  for (var j = 0; j < 6; j++) {
-    faces[list[j]] = cube.appendChild(createFace(list[j], i))
+  var faces = []
+  for (var j = 0; j < 2; j++) {
+    faces[j] = cube.appendChild(createTriangle())
+  }
+  for (var j = 2; j < 5; j++) {
+    faces[j] = cube.appendChild(createSquare())
   }
 
+  console.log(faces)
+
   function style(width, height) {
+    var base = `position: absolute; width: ${width}px; height: ${height}px`
     var transforms = {
-      'front': `translateZ(${width/2}px)`,
-      'back': `rotateY(180deg) translateZ(${width/2}px)`,
-      'left': `rotateY(90deg) translateZ(${width/2}px)`,
-      'right': `rotateY(-90deg) translateZ(${width/2}px)`,
-      'top': `rotateX(90deg) translateZ(${width/2}px)`,
-      'bottom': `rotateX(-90deg) translateZ(${width/2}px)`
+      0: `transform: translateZ(${-width/2}px);`,
+      1: `transform: translateZ(${width/2}px);`,
+      2: `transform: translateY(${width/2}px) rotateX(90deg);`,
+      3: `transform: translateX(${width * 0.25}px) translateY(${width * 0.065}px) rotateY(90deg) rotateX(30deg);`,
+      4: `transform: translateX(${-width * 0.25}px) translateY(${width * 0.065}px) rotateY(90deg) rotateX(-30deg);`
     }
-    for (var j = 0; j < 6; j++) {
-      faces[list[j]].style.transform = transforms[list[j]]
-      faces[list[j]].style.width = `${width}px`
-      faces[list[j]].style.height = `${height}px`
+    for (var j = 0; j < 5; j++) {
+      faces[j].setAttribute('style', transforms[j] + base)
     }
-    cube.style.transformOrigin = `${width/2}px ${width/2}px 0px`
+    cube.style.transformOrigin = `${width*0.5}px ${width*0.68}px 0px`
   }
   return {
     el: cube,
@@ -138,8 +140,28 @@ function createCube(i) {
   }
 }
 
-function createFace(name, i) {
-  var face = document.createElement('div')
-  face.classList.add('face')
-  return face
+function createTriangle() {
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  svg.setAttribute('viewBox', '0 0 100 100')
+  svg.setAttribute('fill', 'none')
+  svg.setAttribute('stroke', 'black')
+  svg.setAttribute('stroke-width', 1)
+  svg.setAttribute('stroke-opacity', 0.5)
+  var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
+  polygon.setAttribute('points', '0 100, 50 13.397, 100 100')
+  svg.appendChild(polygon)
+  return svg
+}
+
+function createSquare() {
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  svg.setAttribute('viewBox', '0 0 100 100')
+  svg.setAttribute('fill', 'none')
+  svg.setAttribute('stroke', 'black')
+  svg.setAttribute('stroke-width', 1)
+  svg.setAttribute('stroke-opacity', 0.5)
+  var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
+  polygon.setAttribute('points', '0 0, 0 100, 100 100, 100 0')
+  svg.appendChild(polygon)
+  return svg
 }
